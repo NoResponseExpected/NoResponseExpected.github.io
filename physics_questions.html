@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCR A Level Physics B — Question Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --bg: #0e0e0f;
+    --surface: #161618;
+    --surface2: #1e1e21;
+    --border: #2a2a2e;
+    --accent: #e8c547;
+    --accent2: #5b8fff;
+    --text: #e8e8ea;
+    --text-muted: #7a7a85;
+    --text-dim: #4a4a55;
+    --correct: #4caf82;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0 2rem;
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .brand-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky;
+    top: 100px;
+  }
+
+  .sidebar-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+  }
+
+  .topic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .topic-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+
+  .topic-list a:hover {
+    background: var(--surface2);
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .topic-list a.active {
+    background: var(--surface2);
+    color: var(--accent);
+    border-color: var(--border);
+  }
+
+  .topic-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    background: var(--bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 20px;
+    color: var(--text-dim);
+  }
+
+  /* Main content */
+  .main { min-width: 0; }
+
+  /* Topic section */
+  .topic-section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 120px;
+  }
+
+  .topic-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .topic-ref {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .topic-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  /* Question card */
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .question-card:hover {
+    border-color: #3a3a40;
+  }
+
+  .question-header {
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    user-select: none;
+  }
+
+  .question-header:hover { background: var(--surface2); }
+
+  .q-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    min-width: 2rem;
+    line-height: 1.6;
+  }
+
+  .q-content { flex: 1; min-width: 0; }
+
+  .q-title {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .q-meta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .q-marks {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent2);
+    background: rgba(91,143,255,0.08);
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(91,143,255,0.15);
+  }
+
+  .q-toggle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    min-width: 1.5rem;
+    text-align: right;
+    transition: transform 0.2s;
+    line-height: 1.6;
+  }
+
+  .question-card.open .q-toggle { transform: rotate(180deg); }
+
+  /* Subquestions */
+  .subquestions {
+    padding: 0 1.5rem 0.5rem 3.5rem;
+  }
+
+  .subquestion {
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .sub-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    min-width: 1.5rem;
+  }
+
+  .sub-text { font-size: 0.88rem; color: var(--text); flex: 1; }
+
+  .sub-marks {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  /* Mark scheme */
+  .markscheme {
+    display: none;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .question-card.open .markscheme { display: block; }
+
+  .ms-header {
+    padding: 1rem 1.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ms-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--correct);
+  }
+
+  .ms-body {
+    padding: 0.5rem 1.5rem 1.5rem;
+  }
+
+  .ms-part {
+    margin-bottom: 1.2rem;
+  }
+
+  .ms-part-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .ms-part-marks {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-left: 0.5rem;
+  }
+
+  .ms-point {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .ms-tick {
+    color: var(--correct);
+    font-size: 0.75rem;
+    min-width: 1rem;
+  }
+
+  .ms-eq {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    overflow-x: auto;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+  }
+
+  .btn-ghost:hover {
+    background: var(--surface2);
+    color: var(--text);
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    color: #0e0e0f;
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  .btn-accent:hover { opacity: 0.9; }
+
+  /* Controls row */
+  .controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .controls-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-right: 0.5rem;
+  }
+
+  /* Divider */
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* MathJax styling */
+  .MathJax { color: var(--text) !important; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .container { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .stats-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-label">OCR A Level · Physics B (H557)</span>
+      <span class="brand-title">Question Bank</span>
+    </div>
+    <div class="stats-bar">
+      <div class="stat"><span class="stat-num">77</span><span class="stat-label">Questions</span></div>
+      <div class="stat"><span class="stat-num">8</span><span class="stat-label">Topics</span></div>
+      <div class="stat"><span class="stat-num">216</span><span class="stat-label">Marks</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <p class="sidebar-heading">Topics</p>
+    <ul class="topic-list">
+      <li><a href="#imaging" class="active">Imaging &amp; Signalling <span class="topic-count">10</span></a></li>
+      <li><a href="#sensing">Sensing <span class="topic-count">10</span></a></li>
+      <li><a href="#materials">Materials <span class="topic-count">10</span></a></li>
+      <li><a href="#waves">Waves &amp; Quantum <span class="topic-count">10</span></a></li>
+      <li><a href="#capacitors">Capacitors &amp; Radioactivity <span class="topic-count">10</span></a></li>
+      <li><a href="#lenses">Lenses (Extended) <span class="topic-count">7</span></a></li>
+      <li><a href="#shm">SHM &amp; Circular Motion <span class="topic-count">10</span></a></li>
+      <li><a href="#gravity">Gravity &amp; Space <span class="topic-count">10</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+
+    <div class="controls">
+      <span class="controls-label">Show:</span>
+      <button class="btn btn-ghost" onclick="expandAll()">Expand all mark schemes</button>
+      <button class="btn btn-ghost" onclick="collapseAll()">Collapse all</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- IMAGING & SIGNALLING -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="topic-section" id="imaging">
+      <div class="topic-header">
+        <span class="topic-ref">3.1.1</span>
+        <h2 class="topic-name">Imaging &amp; Signalling</h2>
+      </div>
+
+      <!-- Q1 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">1</span>
+          <div class="q-content">
+            <p class="q-title">An image is stored using 3 bits per pixel.</p>
+            <div class="q-meta"><span class="q-marks">3 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">State the number of possible intensity levels.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">The image has resolution 600 × 400 pixels. Calculate the total information stored in kilobytes.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part">
+              <span class="ms-part-label">(a) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-eq">\(N = 2^b = 2^3 = 8\) levels</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>8 levels</span></div>
+            </div>
+            <div class="ms-part">
+              <span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(\text{bits} = 600 \times 400 \times 3 = 720{,}000\)</div>
+              <div class="ms-eq">\(\text{kB} = 720{,}000 \div 8 \div 1000 = 90 \text{ kB}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct total bits</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>90 kB</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">2</span>
+          <div class="q-content">
+            <p class="q-title">A converging lens forms a real image. Object is 45 cm from the lens, image is 90 cm on the other side.</p>
+            <div class="q-meta"><span class="q-marks">7 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the power of the lens in dioptres.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">The object is moved closer to the lens. State and explain what must be done to the screen to maintain a sharp image.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain, using wavefront curvature, what is meant by the power of a lens. Include what happens to a wavefront from a near vs distant object.</span><span class="sub-marks">4 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part">
+              <span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(\frac{1}{f} = \frac{1}{v} + \frac{1}{u} = \frac{1}{90} + \frac{1}{45} = \frac{1}{30}\)</div>
+              <div class="ms-eq">\(P = 1/f = 1/0.30 = 3.3 \text{ D}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(f = 30\) cm</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(P = 3.3\) D</span></div>
+            </div>
+            <div class="ms-part">
+              <span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Moving object closer increases \(1/u\), decreasing \(1/v\), so \(v\) increases</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Screen must be moved further from the lens</span></div>
+            </div>
+            <div class="ms-part">
+              <span class="ms-part-label">(c) <span class="ms-part-marks">4 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Distant object → flat/plane wavefronts (curvature ≈ 0)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Near object → curved spherical wavefronts (curvature = 1/u)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Lens adds fixed curvature equal to its power \(P = 1/f\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>More powerful lens adds more curvature → focus at shorter distance</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">3</span>
+          <div class="q-content">
+            <p class="q-title">A signal has maximum frequency 8 kHz, sampled at 16 bits per sample.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the minimum sampling rate required.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the minimum bit rate for transmission.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain why more bits per sample improves signal quality, with reference to noise.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part">
+              <span class="ms-part-label">(a) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-eq">\(\text{min rate} = 2 \times 8000 = 16{,}000 \text{ Hz}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>16 kHz</span></div>
+            </div>
+            <div class="ms-part">
+              <span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(\text{bit rate} = 16{,}000 \times 16 = 256{,}000 \text{ bits s}^{-1}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Sampling rate × bits per sample</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>256 kbits s\(^{-1}\)</span></div>
+            </div>
+            <div class="ms-part">
+              <span class="ms-part-label">(c) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>More bits → more quantisation levels (\(N = 2^b\)) → smaller step size</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Difference between true and nearest digital value (quantisation noise) is smaller</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>From \(b = \log_2(V_{total}/V_{noise})\) — more bits means variations closer to noise floor can be represented</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">4</span>
+          <div class="q-content">
+            <p class="q-title">Microwave radiation passed through two polarising grids. Second grid rotated until intensity drops to zero.</p>
+            <div class="q-meta"><span class="q-marks">5 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">State the angle between grids when intensity drops to zero.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Explain what this demonstrates about the nature of microwaves.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain why this experiment cannot be performed with sound waves.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>90°</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Polarisation only possible with transverse waves</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Demonstrates microwaves are transverse — electric field oscillates perpendicular to direction of travel</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Sound is a longitudinal wave — oscillations parallel to direction of travel</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>No perpendicular component to block, so polarisation is impossible</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">5</span>
+          <div class="q-content">
+            <p class="q-title">An analogue signal ranging 0–5 V is digitised. Noise level is 0.08 V.</p>
+            <div class="q-meta"><span class="q-marks">4 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the minimum number of bits required to represent the signal meaningfully.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Explain why using more bits than this gives no improvement in signal quality.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(b = \log_2\!\left(\frac{5}{0.08}\right) = \log_2(62.5) = 5.97 \rightarrow 6 \text{ bits}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution into \(b = \log_2(V_{total}/V_{noise})\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Rounded up to 6 bits</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Noise means variations below 0.08 V are indistinguishable from noise</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Extra bits create levels finer than noise floor — they encode noise, not real signal</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">6</span>
+          <div class="q-content">
+            <p class="q-title">A camera uses a 4000 × 3000 pixel sensor with 8 bits per colour channel, 3 colour channels per pixel.</p>
+            <div class="q-meta"><span class="q-marks">5 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the total file size of one uncompressed image in megabytes.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Suggest and explain one disadvantage of increasing pixel count whilst keeping sensor the same physical size.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(\text{bits per pixel} = 8 \times 3 = 24\)</div>
+              <div class="ms-eq">\(\text{total bits} = 4000 \times 3000 \times 24 = 288{,}000{,}000\)</div>
+              <div class="ms-eq">\(\text{MB} = 288{,}000{,}000 \div 8 \div 10^6 = 36 \text{ MB}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>24 bits per pixel</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct total bits</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>36 MB</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Smaller pixels capture fewer photons per exposure</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Lower signal-to-noise ratio → noisier images, especially in low light</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">7</span>
+          <div class="q-content">
+            <p class="q-title">A student uses a converging lens to project an image of a window. Window is 8.0 m from lens, image forms 0.40 m from lens.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the focal length of the lens.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the magnification and comment on the image size.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain why the image disappears if the object is placed exactly at the focal point.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(\frac{1}{f} = \frac{1}{8.0} + \frac{1}{0.40} = 2.625 \Rightarrow f = 0.38 \text{ m}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(f = 0.38\) m</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(m = v/u = 0.40/8.0 = 0.05\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Magnification = 0.05</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Image is significantly smaller than window (diminished)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>At focal point, refracted rays emerge parallel — never converge</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Real image requires converging rays; parallel rays meet only at infinity</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">8</span>
+          <div class="q-content">
+            <p class="q-title">An image processing algorithm replaces each pixel value with the average of itself and its neighbours.</p>
+            <div class="q-meta"><span class="q-marks">3 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">State what effect this has on the image.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">State and explain one situation where this process would be deliberately applied.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Smooths/blurs the image / reduces noise</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Noise reduction — averaging cancels random fluctuations</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Medical/astronomical imaging where signal is weak and noise significant</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">9</span>
+          <div class="q-content">
+            <p class="q-title">A student plots a graph of \(1/v\) against \(1/u\) to determine focal length.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Show that this graph is a straight line and state the expected gradient and y-intercept.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">The y-intercept is \(4.8 \pm 0.3\) m\(^{-1}\). Calculate the focal length and its absolute uncertainty.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(\frac{1}{v} = -\frac{1}{u} + \frac{1}{f}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct rearrangement in \(y = mx + c\) form</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Gradient \(= -1\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Y-intercept \(= 1/f = P\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(f = 1/4.8 = 0.21 \text{ m}\)</div>
+              <div class="ms-eq">\(\%\Delta = (0.3/4.8)\times 100 = 6.25\%\)</div>
+              <div class="ms-eq">\(\Delta f = 6.25\% \times 0.21 = 0.01 \text{ m} \Rightarrow f = 0.21 \pm 0.01 \text{ m}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct focal length</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct % uncertainty method</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(f = 0.21 \pm 0.01\) m (correctly rounded)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">10</span>
+          <div class="q-content">
+            <p class="q-title">Light passes through a polarising filter, reflects off a surface, then passes through an analyser. Rotating the analyser shows intensity varies but never drops to zero.</p>
+            <div class="q-meta"><span class="q-marks">4 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Explain what this tells you about the effect of reflection on polarisation.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Suggest how the student could find the orientation of the plane of polarisation after reflection.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Reflected light is only partially polarised — preferred plane exists but components remain in all orientations</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Intensity varies (preferred plane) but never zero (not fully polarised)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Rotate the analyser until minimum intensity is found</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Plane of polarisation is perpendicular to analyser axis at this minimum</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SENSING -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="topic-section" id="sensing">
+      <div class="topic-header">
+        <span class="topic-ref">3.1.2</span>
+        <h2 class="topic-name">Sensing</h2>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">1</span>
+          <div class="q-content">
+            <p class="q-title">A battery of EMF 9.0 V and internal resistance 1.2 Ω connected to external resistor 6.8 Ω.</p>
+            <div class="q-meta"><span class="q-marks">7 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the terminal potential difference.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the power dissipated in the internal resistance.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate the efficiency of the battery as a power source.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(I = 9.0/(6.8+1.2) = 1.125 \text{ A}\)</div>
+              <div class="ms-eq">\(V = 9.0 - 1.125\times1.2 = 7.65 \text{ V}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct current</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(V = \mathcal{E} - Ir\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>7.65 V</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(P = I^2r = 1.125^2 \times 1.2 = 1.52 \text{ W}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(P=I^2r\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>1.52 W</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(\eta = P_{ext}/P_{total} = 8.61/10.125 = 85\%\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct total power from battery</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>85%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">2</span>
+          <div class="q-content">
+            <p class="q-title">Wire of resistivity \(1.7\times10^{-8}\) Ω m, length 2.0 m, diameter 0.50 mm.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the resistance of the wire.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">The wire is stretched to twice its length, volume constant. Show resistance increases by factor 4.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(A = \pi(0.25\times10^{-3})^2 = 1.963\times10^{-7} \text{ m}^2\)</div>
+              <div class="ms-eq">\(R = \rho L/A = 0.17 \text{ Ω}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct area (diameter → radius)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution into \(R=\rho L/A\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.17 Ω</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(V = AL \Rightarrow A' = A/2 \text{ when } L' = 2L\)</div>
+              <div class="ms-eq">\(R' = \rho(2L)/(A/2) = 4R\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Volume constant → \(A' = A/2\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Both \(L\) doubling and \(A\) halving shown</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Clear conclusion \(R' = 4R\)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">3</span>
+          <div class="q-content">
+            <p class="q-title">Thermistor (40 kΩ at 20°C, 5 kΩ at 80°C) in potential divider with 10 kΩ fixed resistor across 5.0 V. Output taken across fixed resistor.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the output voltage at 20°C and at 80°C.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Explain, with reference to charge carrier number density, why thermistor resistance decreases with increasing temperature.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(V_{20} = \frac{10}{50}\times5.0 = 1.0 \text{ V}\)</div>
+              <div class="ms-eq">\(V_{80} = \frac{10}{15}\times5.0 = 3.3 \text{ V}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct potential divider formula</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>1.0 V at 20°C</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>3.3 V at 80°C</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Semiconductors have lower charge carrier number density than metals at room temperature</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Increasing temperature promotes electrons into conduction band → number density increases</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>More carriers → greater current for same p.d. → lower resistance</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">4</span>
+          <div class="q-content">
+            <p class="q-title">6.0 Ω and 3.0 Ω in parallel, connected in series with 4.0 Ω and 12 V battery (negligible internal resistance).</p>
+            <div class="q-meta"><span class="q-marks">7 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the total resistance.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the current through the 6.0 Ω resistor.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Verify using Kirchhoff's first law.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(R_{parallel} = 2.0 \text{ Ω} \Rightarrow R_{total} = 6.0 \text{ Ω}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Parallel combination 2.0 Ω</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Total 6.0 Ω</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(I_{total} = 12/6.0 = 2.0 \text{ A}\)</div>
+              <div class="ms-eq">\(V_{parallel} = 2.0\times2.0 = 4.0 \text{ V}\)</div>
+              <div class="ms-eq">\(I_{6\Omega} = 4.0/6.0 = 0.67 \text{ A}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Total current</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>p.d. across parallel combination</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.67 A through 6.0 Ω</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(I_{3\Omega} = 1.33 \text{ A} \Rightarrow 0.67 + 1.33 = 2.0 \text{ A} = I_{total}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct current through 3.0 Ω</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Currents sum to total — consistent with Kirchhoff's first law</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">5</span>
+          <div class="q-content">
+            <p class="q-title">Cell of EMF \(\mathcal{E}\) and internal resistance \(r\) connected to variable external resistor \(R\). Terminal p.d. \(V\) measured as \(R\) varies.</p>
+            <div class="q-meta"><span class="q-marks">7 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Show that a graph of \(V\) against \(I\) is a straight line, stating gradient and intercept.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Y-intercept is 6.0 V, gradient is −0.80 V A\(^{-1}\). Determine \(\mathcal{E}\) and \(r\).</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain why terminal p.d. decreases as current increases.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(V = \mathcal{E} - Ir \Rightarrow V = -rI + \mathcal{E}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct rearrangement</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Gradient \(= -r\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Y-intercept \(= \mathcal{E}\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(\mathcal{E} = 6.0\) V</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(r = 0.80\) Ω</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Greater current → greater voltage drop across internal resistance (\(V_{lost}=Ir\))</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Less EMF available across external circuit → terminal p.d. decreases</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">6</span>
+          <div class="q-content">
+            <p class="q-title">Copper wire and silicon rod with same dimensions. Explain conductivity differences and effect of temperature on each.</p>
+            <div class="q-meta"><span class="q-marks">5 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">—</span><span class="sub-text">Full explanation required for 5 marks.</span><span class="sub-marks">5 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">5 marks</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Copper: delocalised outer electrons forming sea of free electrons; very high charge carrier number density</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Silicon: electrons bound in covalent bonds at low temperature; far fewer free carriers → much lower conductivity</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Increasing temperature in copper → greater lattice vibration → more electron-ion collisions → higher resistance → lower conductivity</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Increasing temperature in silicon → energy breaks covalent bonds → more electrons promoted to conduction band → carrier density increases significantly</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Carrier density increase in silicon dominates over increased collisions → overall conductivity increases with temperature</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">7</span>
+          <div class="q-content">
+            <p class="q-title">60 W lamp and 100 W lamp (both rated 230 V) connected in series across 230 V supply.</p>
+            <div class="q-meta"><span class="q-marks">8 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the resistance of each lamp at operating temperature.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the power dissipated in each lamp when in series.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">State which is brighter in series and compare to parallel connection.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(R_{60} = V^2/P = 230^2/60 = 881 \text{ Ω}\)</div>
+              <div class="ms-eq">\(R_{100} = 230^2/100 = 529 \text{ Ω}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(R=V^2/P\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Both resistances correct</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(I = 230/1410 = 0.163 \text{ A}\)</div>
+              <div class="ms-eq">\(P_{60} = I^2\times881 = 23.4 \text{ W}\)</div>
+              <div class="ms-eq">\(P_{100} = I^2\times529 = 14.1 \text{ W}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct series current</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Power in 60 W lamp</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Power in 100 W lamp</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>60 W lamp is brighter in series (higher resistance, same current, \(P=I^2R\))</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Opposite to parallel — in parallel same voltage, 100 W lamp (lower R) draws more current and dissipates more power</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Series: power ∝ R (same I); Parallel: power ∝ 1/R (same V) — rules reverse</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">8</span>
+          <div class="q-content">
+            <p class="q-title">Sensor resistance varies linearly from 200 Ω to 800 Ω (0–100 units) in series with 500 Ω across 10 V. Output taken across sensor.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate output voltage at 0 and 100 units.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Determine whether output voltage varies linearly with the quantity measured.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(V_0 = \frac{200}{700}\times10 = 2.86 \text{ V}\)</div>
+              <div class="ms-eq">\(V_{100} = \frac{800}{1300}\times10 = 6.15 \text{ V}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct potential divider formula</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>2.86 V at 0 units</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>6.15 V at 100 units</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(V_{50} = \frac{500}{1000}\times10 = 5.0 \text{ V} \neq 4.50 \text{ V}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Midpoint (50 units, R = 500 Ω) should give 4.50 V if linear</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Gives 5.0 V — not 4.50 V</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Not linear — \(R_{sensor}\) appears in both numerator and denominator → inherently non-linear</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">9</span>
+          <div class="q-content">
+            <p class="q-title">150 C flows through a 20 Ω resistor in 5.0 minutes.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the current.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the potential difference across the resistor.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate the total energy dissipated.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(d)</span><span class="sub-text">Resistor is rated maximum 2.0 W. Determine whether it is being used safely.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-eq">\(I = 150/300 = 0.50 \text{ A}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.50 A</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-eq">\(V = 0.50\times20 = 10 \text{ V}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>10 V</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(W = VIt = 10\times0.50\times300 = 1500 \text{ J}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>1500 J</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(d) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(P = IV = 5.0 \text{ W} > 2.0 \text{ W}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct power 5.0 W</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Exceeds 2.0 W rating — NOT safe</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">10</span>
+          <div class="q-content">
+            <p class="q-title">Student plots current against p.d. for a component — straight line through origin, gradient 0.040 A V\(^{-1}\). Resistance then increases with temperature.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">State what the straight line through origin tells you.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">State what the gradient represents and calculate resistance.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain the increasing resistance with temperature in terms of lattice structure.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Component is ohmic — resistance is constant / obeys Ohm's law</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(R = 1/G = 1/0.040 = 25 \text{ Ω}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Gradient represents conductance \(G\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>25 Ω</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Higher temperature → metal ions vibrate with greater amplitude</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Electrons collide with ions more frequently</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>More frequent collisions → greater resistance to electron flow → resistance increases</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MATERIALS — abbreviated for brevity, pattern continues -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="topic-section" id="materials">
+      <div class="topic-header">
+        <span class="topic-ref">3.2</span>
+        <h2 class="topic-name">Mechanical Properties of Materials</h2>
+      </div>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;">10 questions covering elastic/plastic deformation, stress, strain, Young modulus, dislocations and energy storage.</p>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">1</span>
+          <div class="q-content">
+            <p class="q-title">State the difference between elastic and plastic deformation.</p>
+            <div class="q-meta"><span class="q-marks">2 marks</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">2 marks</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Elastic: material returns to original shape when force removed</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Plastic: material is permanently deformed — does not return to original shape</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">2</span>
+          <div class="q-content">
+            <p class="q-title">Wire: length 2.5 m, cross-sectional area \(3.2\times10^{-7}\) m², force 80 N, extension 1.4 mm.</p>
+            <div class="q-meta"><span class="q-marks">3 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the stress.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the strain.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate the Young modulus.</span><span class="sub-marks">1 mark</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(\sigma = F/A = 80/(3.2\times10^{-7}) = 2.5\times10^8 \text{ Pa}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(2.5\times10^8\) Pa</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(\varepsilon = x/L = 1.4\times10^{-3}/2.5 = 5.6\times10^{-4}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(5.6\times10^{-4}\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-eq">\(E = \sigma/\varepsilon = 4.5\times10^{11} \text{ Pa}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(4.5\times10^{11}\) Pa</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">3</span>
+          <div class="q-content">
+            <p class="q-title">Spring constant 40 N m\(^{-1}\), extended 6.0 cm.</p>
+            <div class="q-meta"><span class="q-marks">6 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the force applied.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the elastic strain energy stored.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">The spring is extended beyond its elastic limit. Explain this and describe how the F-x graph differs.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(F = kx = 40\times0.060 = 2.4 \text{ N}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>2.4 N</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(E = \frac{1}{2}kx^2 = \frac{1}{2}\times40\times0.060^2 = 0.072 \text{ J}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.072 J</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Elastic limit: point beyond which material no longer returns to original length — permanent deformation occurs</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Graph is no longer linear beyond elastic limit</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Unloading follows different path; non-zero extension at zero force</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">4</span>
+          <div class="q-content">
+            <p class="q-title">Explain, in terms of dislocations, why metals are ductile whilst ceramics are brittle.</p>
+            <div class="q-meta"><span class="q-marks">4 marks</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">4 marks</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Metals contain dislocations — irregularities in the crystal lattice</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Dislocations can move through the lattice (slip) — planes slide gradually rather than all bonds breaking at once</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Allows plastic deformation — metals absorb significant energy before fracture</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Ceramics have no mobile dislocations; ionic/covalent bonds rigid — cracks propagate rapidly → brittle fracture</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">5</span>
+          <div class="q-content">
+            <p class="q-title">Describe the key features of a rubber band force-extension graph distinguishing it from a metal wire.</p>
+            <div class="q-meta"><span class="q-marks">4 marks</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">4 marks</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Non-linear S-shaped loading curve — initially stiffer, then easier, then stiffening again</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Unloading curve lies below loading curve (hysteresis loop)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Returns to origin — elastic, but non-Hookean</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Hysteresis: area between curves = energy dissipated as heat; due to chain entanglement and internal friction</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">6</span>
+          <div class="q-content">
+            <p class="q-title">Steel cable: diameter 12 mm, length 15 m. \(E = 2.1\times10^{11}\) Pa, fracture stress \(= 4.0\times10^8\) Pa.</p>
+            <div class="q-meta"><span class="q-marks">8 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the maximum load before fracture.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the extension at half the maximum load.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate the elastic strain energy at half the maximum load.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(A = \pi(6\times10^{-3})^2 = 1.131\times10^{-4} \text{ m}^2\)</div>
+              <div class="ms-eq">\(F_{max} = 4.0\times10^8 \times 1.131\times10^{-4} = 4.5\times10^4 \text{ N}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct area (diameter → radius)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of fracture stress</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(4.5\times10^4\) N</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(\sigma = 2.0\times10^8 \text{ Pa}, \quad \varepsilon = 9.52\times10^{-4}\)</div>
+              <div class="ms-eq">\(x = \varepsilon L = 9.52\times10^{-4}\times15 = 0.014 \text{ m}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct stress at half load</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct strain</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.014 m</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c) <span class="ms-part-marks">2 marks</span></span>
+              <div class="ms-eq">\(E = \frac{1}{2}Fx = \frac{1}{2}\times2.26\times10^4\times0.014 = 158 \text{ J}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(E = \frac{1}{2}Fx\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>158 J</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">7</span>
+          <div class="q-content">
+            <p class="q-title">Rayleigh's oil drop: volume \(5.0\times10^{-10}\) m³, circular patch diameter 0.40 m.</p>
+            <div class="q-meta"><span class="q-marks">4 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Estimate the diameter of an oil molecule, stating assumptions.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Suggest why this is an overestimate of the molecular diameter.</span><span class="sub-marks">1 mark</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a) <span class="ms-part-marks">3 marks</span></span>
+              <div class="ms-eq">\(A = \pi\times0.20^2 = 0.1257 \text{ m}^2\)</div>
+              <div class="ms-eq">\(d = V/A = 5.0\times10^{-10}/0.1257 = 4.0\times10^{-9} \text{ m}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct patch area</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct volume/area calculation</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Assumption: oil spreads to layer exactly one molecule thick</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b) <span class="ms-part-marks">1 mark</span></span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Patch may not be perfectly uniform / molecule may not be spherical / layer may not be exactly one molecule thick</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">8</span>
+          <div class="q-content">
+            <p class="q-title">Polymer stretched and released. Unloading curve lies below loading curve, sample does not return to original length.</p>
+            <div class="q-meta"><span class="q-marks">7 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Name the area between loading and unloading curves and state what it represents.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Explain the shape of the loading curve in terms of molecular chains.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">State whether this polymer behaves plastically or elastically, with justification.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Hysteresis</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Energy dissipated as heat per loading-unloading cycle</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Initially chains tangled and randomly coiled — little force to start straightening → low gradient</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>As chains align, greater force needed → gradient increases</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Chains nearly fully aligned — further stretching strains bonds → graph steepens sharply</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Plastic</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Does not return to original length — permanent extension remains after unloading</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">9</span>
+          <div class="q-content">
+            <p class="q-title">Describe how to determine Young modulus of a copper wire experimentally, including graphical presentation.</p>
+            <div class="q-meta"><span class="q-marks">6 marks</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">6 marks</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Measure original length \(L\) from fixed point using metre rule</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Measure diameter at several points using micrometer → calculate \(A = \pi(d/2)^2\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Add known masses and measure extension \(x\) using vernier/travelling microscope for each load</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Plot \(F\) against \(x\) — gradient \(= k\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(E = kL/A\) — use only linear region</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Long wire used to make \(x\) large enough to measure accurately — reduces % uncertainty</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header">
+          <span class="q-number">10</span>
+          <div class="q-content">
+            <p class="q-title">Materials A and B: same Young modulus, A has higher fracture stress. C: lower Young modulus than both, higher fracture stress than both.</p>
+            <div class="q-meta"><span class="q-marks">7 marks total</span></div>
+          </div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Sketch stress-strain graphs for all three on the same axes.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Which material is most suitable for a wire that must stretch significantly before breaking?</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain toughness and identify the toughest material from the graph.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>A and B have same gradient; A reaches higher fracture stress</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>C has shallower gradient (lower E)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>C line extends to highest stress before fracture, furthest along x-axis</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Material C</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Largest strain at fracture — extends furthest along x-axis before line ends</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Toughness = energy absorbed per unit volume up to fracture = area under stress-strain graph</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>C is toughest — greatest area under curve despite lower gradient</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Placeholder sections for remaining topics -->
+    <section class="topic-section" id="waves">
+      <div class="topic-header">
+        <span class="topic-ref">4.1</span>
+        <h2 class="topic-name">Waves &amp; Quantum Behaviour</h2>
+      </div>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;">10 questions on standing waves, interference, diffraction, photoelectric effect, de Broglie wavelength and quantum behaviour. See full question list in the conversation.</p>
+      <!-- Wave questions follow same card pattern - abbreviated here -->
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">1</span>
+          <div class="q-content"><p class="q-title">Standing wave on string, length 0.80 m, wave speed 240 m s\(^{-1}\).</p><div class="q-meta"><span class="q-marks">6 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Sketch the third harmonic, labelling nodes and antinodes.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the frequency of the third harmonic.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Explain how the standing wave is formed from two travelling waves.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span><div class="ms-point"><span class="ms-tick">✓</span><span>3 loops (antinodes), 4 nodes, fixed ends as nodes</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>All nodes and antinodes correctly labelled</span></div></div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(\lambda_3 = 2L/3 = 0.533 \text{ m}\)</div>
+              <div class="ms-eq">\(f = v/\lambda = 240/0.533 = 450 \text{ Hz}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct \(\lambda\)</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>450 Hz</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Two waves of same frequency and amplitude travel in opposite directions</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Superpose — nodes: always destructive; antinodes: always constructive → stationary pattern</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">2</span>
+          <div class="q-content"><p class="q-title">Light \(\lambda = 590\) nm, double slit separation 0.45 mm, screen 1.8 m away.</p><div class="q-meta"><span class="q-marks">6 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate fringe spacing.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">State and explain effect of doubling slit separation.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">State and explain effect of covering one slit.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(\Delta y = \lambda L/d = 590\times10^{-9}\times1.8/(0.45\times10^{-3}) = 2.4 \text{ mm}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>2.4 mm</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Fringe spacing halves</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>From \(\Delta y = \lambda L/d\) — doubling \(d\) halves \(\Delta y\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Interference pattern disappears</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>No two-slit interference possible; single-slit diffraction pattern observed instead</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">3–10</span>
+          <div class="q-content"><p class="q-title">Remaining waves questions: refraction/Snell's law, diffraction grating, photon energy/LED, electron diffraction, microwave interference, photoelectric effect, quantum behaviour/phasors, oscilloscope &amp; resonance tube.</p><div class="q-meta"><span class="q-marks">See conversation for full questions and mark schemes</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <p style="color:var(--text-muted);font-size:0.85rem;">Full mark schemes for questions 3–10 are provided in the conversation above. Key equations: \(n\sin\theta = \text{const}\), \(n\lambda = d\sin\theta\), \(E = hf\), \(\lambda = h/p\), \(E_k = hf - \phi\).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="topic-section" id="capacitors">
+      <div class="topic-header">
+        <span class="topic-ref">5.1.1</span>
+        <h2 class="topic-name">Capacitors &amp; Radioactive Decay</h2>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">1</span>
+          <div class="q-content"><p class="q-title">Capacitor 470 μF charged to 12 V, discharged through 2.2 kΩ.</p><div class="q-meta"><span class="q-marks">4 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the charge stored.</span><span class="sub-marks">1 mark</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the energy stored.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate the time constant.</span><span class="sub-marks">1 mark</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(Q = CV = 470\times10^{-6}\times12 = 5.64\times10^{-3} \text{ C}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(5.64\times10^{-3}\) C</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(E = \frac{1}{2}QV = \frac{1}{2}\times5.64\times10^{-3}\times12 = 0.034 \text{ J}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct formula</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>0.034 J</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-eq">\(\tau = RC = 2200\times470\times10^{-6} = 1.03 \text{ s}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>1.03 s</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">2</span>
+          <div class="q-content"><p class="q-title">Radioactive source: \(4.0\times10^{18}\) atoms, half-life 8.0 days.</p><div class="q-meta"><span class="q-marks">6 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the decay constant in s\(^{-1}\).</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the initial activity.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate atoms remaining after 24 days.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(T_{1/2} = 8.0\times24\times3600 = 6.91\times10^5 \text{ s}\)</div>
+              <div class="ms-eq">\(\lambda = \ln2 / T_{1/2} = 1.0\times10^{-6} \text{ s}^{-1}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct conversion to seconds</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(\lambda = 1.0\times10^{-6}\) s\(^{-1}\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(A = \lambda N = 1.0\times10^{-6}\times4.0\times10^{18} = 4.0\times10^{12} \text{ Bq}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(A=\lambda N\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(4.0\times10^{12}\) Bq</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-eq">\(24\text{ days} = 3 \text{ half-lives} \Rightarrow N = N_0/8 = 5.0\times10^{17}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>3 half-lives identified</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(5.0\times10^{17}\)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">3–10</span>
+          <div class="q-content"><p class="q-title">Remaining capacitor/radioactivity questions: exponential decay from data, charging equations, time constants, protactinium half-life, parallel capacitors, nuclear equations, Po-210, ln V graphs.</p><div class="q-meta"><span class="q-marks">See conversation for full questions and mark schemes</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <p style="color:var(--text-muted);font-size:0.85rem;">Key equations: \(Q=Q_0e^{-t/RC}\), \(\tau=RC\), \(T_{1/2}=\ln2/\lambda\), \(A=\lambda N\), \(E=\frac{1}{2}CV^2\), \(\ln V = \ln V_0 - t/RC\).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="topic-section" id="lenses">
+      <div class="topic-header">
+        <span class="topic-ref">3.1.1</span>
+        <h2 class="topic-name">Lenses — Extended Questions</h2>
+      </div>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;">7 more challenging lens questions including virtual images, combined lenses, simultaneous equations and uncertainty.</p>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">1</span>
+          <div class="q-content"><p class="q-title">Converging lens \(f=15\) cm, object 10 cm from lens.</p><div class="q-meta"><span class="q-marks">5 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Show the lens equation gives a negative value for \(v\) and explain what this means.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate magnification and state whether image is upright or inverted.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(\frac{1}{v} = \frac{1}{15} - \frac{1}{10} = -\frac{1}{30} \Rightarrow v = -30 \text{ cm}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution into \(1/v = 1/f - 1/u\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(v = -30\) cm</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Negative \(v\) → image on same side as object → virtual image</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(m = v/u = -30/10 = -3\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Magnification \(= -3\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Virtual images are upright; magnification \(-3\) means 3× larger, upright</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">2</span>
+          <div class="q-content"><p class="q-title">Lens A: \(f=20\) cm, Lens B: \(f=30\) cm, in contact. Object 24 cm from combined lens.</p><div class="q-meta"><span class="q-marks">5 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the combined power.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate image distance and magnification.</span><span class="sub-marks">3 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(P = 1/0.20 + 1/0.30 = 5.0 + 3.33 = 8.33 \text{ D}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct individual powers</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>8.33 D</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(f = 12 \text{ cm}, \quad 1/v = 1/12 - 1/24 = 1/24 \Rightarrow v = 24 \text{ cm}\)</div>
+              <div class="ms-eq">\(m = v/u = 24/24 = 1\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct focal length from combined power</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>24 cm</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(m=1\)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">3–7</span>
+          <div class="q-content"><p class="q-title">Remaining lens questions: evaluating student claims, object at 30 cm from 4D lens (image height, ray diagram), \(1/v\) vs \(1/u\) graph with uncertainty, simultaneous equations for \(f\) from two magnifications.</p><div class="q-meta"><span class="q-marks">See conversation for full questions and mark schemes</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <p style="color:var(--text-muted);font-size:0.85rem;">Q7 key result: using \(v = mf/(m-1)\), set up simultaneous equations to give \(f = 48\) cm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="topic-section" id="shm">
+      <div class="topic-header">
+        <span class="topic-ref">5.1.1 / 5.1.2</span>
+        <h2 class="topic-name">SHM &amp; Circular Motion</h2>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">1</span>
+          <div class="q-content"><p class="q-title">Mass 0.35 kg on spring \(k=28\) N m\(^{-1}\), amplitude 4.0 cm.</p><div class="q-meta"><span class="q-marks">7 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate the period.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate the maximum speed.</span><span class="sub-marks">3 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate maximum acceleration and state where it occurs.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(T = 2\pi\sqrt{m/k} = 2\pi\sqrt{0.35/28} = 0.70 \text{ s}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>0.70 s</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(\omega = 2\pi/T = 8.95 \text{ rad s}^{-1}\)</div>
+              <div class="ms-eq">\(v_{max} = \omega A = 8.95\times0.040 = 0.36 \text{ m s}^{-1}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct \(\omega\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(v_{max}=\omega A\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.36 m s\(^{-1}\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-eq">\(a_{max} = \omega^2 A = 8.95^2\times0.040 = 3.2 \text{ m s}^{-2}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>3.2 m s\(^{-2}\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>At maximum displacement (amplitude)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">2–10</span>
+          <div class="q-content"><p class="q-title">Remaining SHM &amp; circular motion questions: pendulum, circular motion calculations, free/forced/damped oscillations, SHM energy, car over hill, displacement/velocity/acceleration expressions and graphs.</p><div class="q-meta"><span class="q-marks">See conversation for full questions and mark schemes</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <p style="color:var(--text-muted);font-size:0.85rem;">Key equations: \(T=2\pi\sqrt{L/g}\), \(a=v^2/r\), \(\omega=v/r\), \(v_{max}=\omega A\), \(E_{total}=\frac{1}{2}m\omega^2A^2\), \(x=A\cos(\omega t)\).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="topic-section" id="gravity">
+      <div class="topic-header">
+        <span class="topic-ref">5.1.2 / 5.1.3</span>
+        <h2 class="topic-name">Gravitational Fields &amp; Space</h2>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">1</span>
+          <div class="q-content"><p class="q-title">Earth: mass \(6.0\times10^{24}\) kg, radius \(6.4\times10^6\) m.</p><div class="q-meta"><span class="q-marks">6 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate gravitational field strength at surface.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate gravitational potential at surface.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate minimum energy to move 500 kg satellite to infinity.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(g = GM/r^2 = 9.8 \text{ N kg}^{-1}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>9.8 N kg\(^{-1}\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(V = -GM/r = -6.3\times10^7 \text{ J kg}^{-1}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution including negative sign</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(-6.3\times10^7\) J kg\(^{-1}\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-eq">\(\Delta E = m|V| = 500\times6.3\times10^7 = 3.1\times10^{10} \text{ J}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(\Delta E = m\Delta V\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(3.1\times10^{10}\) J</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">2</span>
+          <div class="q-content"><p class="q-title">Muon: \(v=0.98c\), proper lifetime \(2.2\times10^{-6}\) s.</p><div class="q-meta"><span class="q-marks">8 marks total</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions">
+          <div class="subquestion"><span class="sub-label">(a)</span><span class="sub-text">Calculate relativistic factor \(\gamma\).</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(b)</span><span class="sub-text">Calculate lifetime as measured on Earth.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(c)</span><span class="sub-text">Calculate distance muon travels in Earth's frame.</span><span class="sub-marks">2 marks</span></div>
+          <div class="subquestion"><span class="sub-label">(d)</span><span class="sub-text">Calculate distance without time dilation and explain significance.</span><span class="sub-marks">2 marks</span></div>
+        </div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <div class="ms-part"><span class="ms-part-label">(a)</span>
+              <div class="ms-eq">\(\gamma = 1/\sqrt{1-0.98^2} = 1/\sqrt{0.0396} = 5.03\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct substitution</span></div><div class="ms-point"><span class="ms-tick">✓</span><span>\(\gamma = 5.0\)</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(b)</span>
+              <div class="ms-eq">\(t = \gamma t_0 = 5.0\times2.2\times10^{-6} = 1.1\times10^{-5} \text{ s}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Correct use of \(t=\gamma t_0\)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>\(1.1\times10^{-5}\) s</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(c)</span>
+              <div class="ms-eq">\(d = v\times t = 0.98\times3\times10^8\times1.1\times10^{-5} = 3.3 \text{ km}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Uses dilated lifetime</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>3.3 km</span></div>
+            </div>
+            <div class="ms-part"><span class="ms-part-label">(d)</span>
+              <div class="ms-eq">\(d = v\times t_0 = 0.65 \text{ km}\)</div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>0.65 km — less than atmosphere thickness (~10 km)</span></div>
+              <div class="ms-point"><span class="ms-tick">✓</span><span>Muons should not reach surface without time dilation — their detection is direct experimental evidence for time dilation</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card" onclick="toggle(this)">
+        <div class="question-header"><span class="q-number">3–10</span>
+          <div class="q-content"><p class="q-title">Remaining gravity/space questions: geostationary orbit, field vs potential graphs, spacecraft calculations, radar distances, Hubble's law, Kepler's third law, Earth-Moon null point.</p><div class="q-meta"><span class="q-marks">See conversation for full questions and mark schemes</span></div></div>
+          <span class="q-toggle">▼</span>
+        </div>
+        <div class="subquestions"></div>
+        <div class="markscheme">
+          <div class="ms-header"><span class="ms-label">Mark Scheme</span></div>
+          <div class="ms-body">
+            <p style="color:var(--text-muted);font-size:0.85rem;">Key equations: \(v=\sqrt{GM/r}\), \(V_{grav}=-GM/r\), \(g=-dV/dr\), \(v=H_0d\), \(\gamma=1/\sqrt{1-v^2/c^2}\), \(T^2\propto r^3\).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+
+  function expandAll() {
+    document.querySelectorAll('.question-card').forEach(c => c.classList.add('open'));
+  }
+
+  function collapseAll() {
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('open'));
+  }
+
+  // Sidebar active state on scroll
+  const sections = document.querySelectorAll('.topic-section');
+  const links = document.querySelectorAll('.topic-list a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const id = entry.target.id;
+        const activeLink = document.querySelector(`.topic-list a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
