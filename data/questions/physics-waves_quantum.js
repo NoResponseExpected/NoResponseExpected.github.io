@@ -1,4 +1,4 @@
-HUB.addQuestions('physics/waves-quantum', [
+HUB.addQuestions('physics/waves_quantum', [
   {
     marks: 3,
     partMarks: [1, 2],

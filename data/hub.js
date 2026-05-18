@@ -10,7 +10,7 @@ window.HUB = {
       name: 'Physics',
       board: 'OCR H556',
       icon: 'atom',
-      blurb: 'OCR A-Level. Mechanics, fields, waves, quantum.',
+      blurb: 'OCR A-Level Physics H557',
       topics: [
         { id: 'forces',       name: 'Forces and Motion' },
         { id: 'em',           name: 'Electromagnetism' },
