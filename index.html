@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revision Hub — A-Level practice questions</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="app.css">
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="data/hub.js"></script>
+
+  <!-- Add a <script> for each topic file under data/questions/ -->
+  <script src="data/questions/cs-algorithms.js"></script>
+  <script src="data/questions/cs-data-rep.js"></script>
+  <script src="data/questions/cs-theory.js"></script>
+  <script src="data/questions/physics-capacitors.js"></script>
+  <script src="data/questions/physics-em.js"></script>
+  <script src="data/questions/physics-shm.js"></script>
+  <script src="data/questions/physics-quantum.js"></script>
+
+  <script type="text/babel" src="src/Icon.jsx"></script>
+  <script type="text/babel" src="src/Chrome.jsx"></script>
+  <script type="text/babel" src="src/Pages.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="env,react">
+function App() {
+  const [theme, setTheme] = React.useState('light');
+  const [route, setRoute] = React.useState({ page: 'home' });
+  const [searchOpen, setSearchOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  React.useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (e.key === 'Escape') setSearchOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const navigate = (next) => {
+    setRoute(next);
+    window.scrollTo({ top: 0 });
+  };
+
+  let page;
+  if (route.page === 'home') {
+    page = <Home navigate={navigate} />;
+  } else if (route.page === 'subject') {
+    page = <SubjectPage subjectId={route.subjectId} navigate={navigate} />;
+  } else if (route.page === 'topic') {
+    page = <TopicPage subjectId={route.subjectId} topicId={route.topicId} navigate={navigate} />;
+  } else if (route.page === 'quiz') {
+    page = <QuizPage subjectId={route.subjectId} quizId={route.quizId} navigate={navigate} />;
+  } else {
+    page = <NotFound navigate={navigate} />;
+  }
+
+  return (
+    <div className="hub-app">
+      <Topbar
+        theme={theme}
+        onTheme={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+        onSearch={() => setSearchOpen(true)}
+        route={route}
+        navigate={navigate}
+      />
+      <main className="hub-stage">
+        <Explorer route={route} navigate={navigate} />
+        {page}
+      </main>
+
+      {searchOpen && (
+        <div className="hub-search-overlay" onClick={() => setSearchOpen(false)}>
+          <div className="hub-search-modal" onClick={e => e.stopPropagation()}>
+            <input placeholder="Search questions…" autoFocus />
+            <div className="hint">Press <span className="hub-kbd">esc</span> to close. Search is a stub in this prototype.</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Wait for all babel'd scripts to define their globals before mounting.
+function mount() {
+  if (!window.Topbar || !window.Explorer || !window.Home || !window.Icon) {
+    return setTimeout(mount, 30);
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+}
+mount();
+</script>
+</body>
+</html>
