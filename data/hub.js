@@ -12,8 +12,10 @@ window.HUB = {
       icon: 'atom',
       blurb: 'OCR A-Level Physics H557',
       topics: [
-        { id: 'waves_quantum',        name: 'Waves and Quantum' },
         { id: 'imaging_signalling',      name: 'Imaging and Signalling' },
+        { id: 'sensing',      name: 'Sensing' },
+        { id: 'materials',        name: 'Materials' },
+        { id: 'waves_quantum',        name: 'Waves and Quantum' },
       ],
       quizzes: [
         { id: 'q1', name: 'Quiz one', qCount: 30 },
