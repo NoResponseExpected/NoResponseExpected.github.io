@@ -8,9 +8,9 @@ window.HUB = {
     {
       id: 'physics',
       name: 'Physics',
-      board: 'OCR H556',
+      board: 'OCR H557',
       icon: 'atom',
-      blurb: 'OCR A-Level Physics H557',
+      blurb: 'OCR A-Level Physics H557 Topic questions and multiple-choice quizzes.',
       topics: [
         { id: 'imaging_signalling',      name: 'Imaging and Signalling' },
         { id: 'sensing',      name: 'Sensing' },
@@ -18,6 +18,8 @@ window.HUB = {
         { id: 'waves_quantum',        name: 'Waves and Quantum' },
         { id: 'forces_motion',        name: 'Forces and Motion' },
         { id: 'matter_boltzmann',     name: 'Matter and Boltzmann' },
+        { id: 'electromagnetism',     name: 'Electromagnetism' },
+        { id: 'fields',              name: 'Electric and Gravitational Fields' },
       ],
       quizzes: [
         { id: 'q1', name: 'Quiz one', qCount: 30 },
