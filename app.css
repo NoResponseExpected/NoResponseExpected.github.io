@@ -1,7 +1,7 @@
 /* Revision Hub — built on top of colors_and_type.css.
    All rules namespaced with .hub- so the design system stays clean. */
 
-html, body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); }
+html, body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); overflow-x: hidden; }
 * { box-sizing: border-box; }
 
 /* ---------- app shell ---------- */
@@ -17,11 +17,43 @@ html, body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--f
   width: 100%;
 }
 
+/* Apply text-wrapping defensively everywhere — works at ANY viewport width, not just mobile. */
+.hub-content, .hub-q-block, .hub-q-grid, .hub-q-grid > .body,
+.hub-q-grid .stem-row, .hub-q-grid .parts, .hub-q-grid .parts li,
+.hub-mark, .hub-mark-list, .hub-mark-row {
+  min-width: 0;
+  max-width: 100%;
+}
+.hub-q-grid .stem-text,
+.hub-q-grid .parts li .part-text,
+.hub-mark-row > * {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+}
+
 @media (max-width: 1248px) {
   .hub-explorer { display: none; }
 }
 @media (max-width: 900px) {
   .hub-stage { padding: var(--s4); }
+}
+@media (max-width: 768px) {
+  /* Mobile: drop search box + crumbs, tighten everything */
+  .hub-topbar { padding: 0 var(--s4); gap: var(--s2); }
+  .hub-searchbox { display: none; }
+  .hub-crumbs { display: none; }
+  .hub-stage { padding: var(--s4) var(--s3); }
+  h1 { font-size: 28px; }
+  .hub-q-grid { grid-template-columns: 24px minmax(0, 1fr); gap: var(--s3); }
+  .hub-q-grid > .num { font-size: 18px; }
+  .hub-q-grid .stem-row { font-size: 16px; gap: var(--s3); }
+  .hub-q-grid .parts li {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: var(--s2);
+    font-size: 15px;
+  }
+  .hub-q-actions { padding-left: calc(24px + var(--s3)); }
 }
 
 /* ---------- topbar ---------- */
@@ -406,7 +438,11 @@ button.hub-section-toggle.open .chev { transform: rotate(-90deg); }
   padding-bottom: var(--s2);
   color: var(--fg);
 }
-.hub-q-grid .stem-text { white-space: pre-wrap; }
+.hub-q-grid .stem-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
 .hub-q-grid .stem-row .marks {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -439,6 +475,8 @@ button.hub-section-toggle.open .chev { transform: rotate(-90deg); }
 .hub-q-grid .parts li .part-text {
   color: var(--fg);
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 .hub-q-grid .parts li .marks {
   font-family: var(--font-mono);
@@ -592,7 +630,7 @@ button.hub-section-toggle.open .chev { transform: rotate(-90deg); }
 .hub-mark-list { display: flex; flex-direction: column; gap: var(--s3); }
 .hub-mark-row {
   display: grid;
-  grid-template-columns: 28px 1fr;
+  grid-template-columns: 28px minmax(0, 1fr);
   gap: var(--s3);
   align-items: baseline;
   font-size: 15px; line-height: 1.55;
