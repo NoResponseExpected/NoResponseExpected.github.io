@@ -12,14 +12,8 @@ window.HUB = {
       icon: 'atom',
       blurb: 'OCR A-Level Physics H557',
       topics: [
-        { id: 'forces',       name: 'Forces and Motion' },
-        { id: 'em',           name: 'Electromagnetism' },
-        { id: 'capacitors',   name: 'Capacitor Discharge' },
-        { id: 'shm',          name: 'Simple Harmonic Motion' },
         { id: 'waves_quantum',        name: 'Waves and Quantum' },
-        { id: 'radioactive',  name: 'Radioactive Decay' },
-        { id: 'universe',     name: 'Our Place in the Universe' },
-        { id: 'imaging',      name: 'Imaging and Signalling' },
+        { id: 'imaging_signalling',      name: 'Imaging and Signalling' },
       ],
       quizzes: [
         { id: 'q1', name: 'Quiz one', qCount: 30 },
