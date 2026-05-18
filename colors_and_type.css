@@ -1,0 +1,179 @@
+/* =========================================================================
+   RDB Design System — colours_and_type.css
+   ------------------------------------------------------------------------
+   Drop this stylesheet in and you have the brand:
+     <link rel="stylesheet" href="colors_and_type.css">
+   Toggle theme by setting `data-theme="dark"` on <html>.
+   ========================================================================= */
+
+/* ----------  Fonts (Google Fonts)  -------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ----------  Light theme (default)  ------------------------------------- */
+:root {
+  /* surfaces */
+  --bg:           #f6f1e7;
+  --bg-panel:     #e7decd;
+  --bg-elevated:  #efe7d6;
+  --border:       #dcd3bd;
+
+  /* text */
+  --fg:           #1a0826;
+  --fg-muted:     #8a7f8a;
+  --fg-subtle:    #aea5a7;
+
+  /* accents */
+  --accent:        #b6550a;
+  --accent-strong: #9a4708;
+  --violet:        #7b3ff5;
+
+  /* spacing scale (4px base) */
+  --s1:  4px;
+  --s2:  8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+
+  /* radii */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 8px;
+
+  /* type */
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --fs-h1:    2.25rem;   /* 36 */
+  --fs-h2:    1.5rem;    /* 24 */
+  --fs-h3:    1.25rem;   /* 20 */
+  --fs-body:  1rem;      /* 16 */
+  --fs-small: 0.875rem;  /* 14 */
+  --fs-mono:  0.9375rem; /* 15 */
+
+  --lh-tight:  1.15;
+  --lh-snug:   1.25;
+  --lh-body:   1.6;
+
+  /* layout */
+  --content-width: 72ch;
+  --sidebar-width: 240px;
+  --rail-width:    280px;
+
+  /* motion */
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur-fast: 120ms;
+  --dur:      160ms;
+}
+
+/* ----------  Dark theme  ------------------------------------------------- */
+:root[data-theme="dark"],
+.theme-dark {
+  --bg:           #0f0f18;
+  --bg-panel:     #1a1a26;
+  --bg-elevated:  #16161f;
+  --border:       #262633;
+
+  --fg:           #e1e1e1;
+  --fg-muted:     #9b9ba8;
+  --fg-subtle:    #6b6b78;
+
+  --accent:        #f48500;
+  --accent-strong: #ffa033;
+  --violet:        #a78bfa;
+}
+
+/* ----------  Element resets / semantics  -------------------------------- */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  margin: 0 0 var(--s4);
+  font-weight: 700;
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); letter-spacing: -0.01em; font-weight: 800; }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-snug);  letter-spacing: -0.005em; font-weight: 700; }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-snug); font-weight: 600; }
+h4 { font-size: var(--fs-body); font-weight: 600; }
+
+p {
+  margin: 0 0 var(--s4);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+a:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+small, .muted { color: var(--fg-muted); font-size: var(--fs-small); }
+
+strong { font-weight: 700; }
+em     { font-style: italic; }
+
+/* code */
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+}
+code {
+  background: var(--bg-panel);
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+}
+pre {
+  background: var(--bg-panel);
+  border-radius: var(--r-md);
+  padding: var(--s4);
+  overflow-x: auto;
+  line-height: var(--lh-body);
+}
+pre code { background: transparent; padding: 0; }
+
+/* lists */
+ul, ol { padding-left: var(--s5); margin: 0 0 var(--s4); }
+li { margin-bottom: var(--s2); }
+ul li::marker { color: var(--fg); }
+
+/* hr */
+hr { border: 0; border-top: 1px solid var(--border); margin: var(--s6) 0; }
+
+/* selection */
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ----------  Spec tags (IS / NIS)  -------------------------------------- */
+.spec-tag {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--violet);
+  font-size: 0.95em;
+}
+
+/* ----------  Convenience utility classes  ------------------------------- */
+.bg          { background: var(--bg); }
+.bg-panel    { background: var(--bg-panel); }
+.bg-elevated { background: var(--bg-elevated); }
+.fg          { color: var(--fg); }
+.fg-muted    { color: var(--fg-muted); }
+.accent      { color: var(--accent); }
+.violet      { color: var(--violet); }
+.mono        { font-family: var(--font-mono); }
+.serif, .sans { font-family: var(--font-sans); }
