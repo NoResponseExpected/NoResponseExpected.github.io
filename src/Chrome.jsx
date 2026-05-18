@@ -40,7 +40,7 @@ function Topbar({ theme, onTheme, onSearch, route, navigate }) {
         )}
       </div>
 
-      <button className="hub-searchbox" onClick={onSearch}>
+      <button className="hub-searchbox" onClick={onSearch} aria-label="Search">
         <Icon name="search" size={14} />
         <span>Search questions…</span>
         <span className="hub-kbd">⌘K</span>

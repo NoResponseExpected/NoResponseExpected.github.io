@@ -7,7 +7,7 @@ html, body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--f
 /* ---------- app shell ---------- */
 .hub-app {
   display: grid;
-  grid-template-rows: 56px 1fr;
+  grid-template-rows: auto 1fr;
   min-height: 100vh;
 }
 
@@ -37,12 +37,25 @@ html, body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--f
 }
 @media (max-width: 900px) {
   .hub-stage { padding: var(--s4); }
-}
-@media (max-width: 768px) {
-  /* Mobile: drop search box + crumbs, tighten everything */
+  /* Mobile: hide crumbs, collapse search box to an icon */
   .hub-topbar { padding: 0 var(--s4); gap: var(--s2); }
-  .hub-searchbox { display: none; }
   .hub-crumbs { display: none; }
+  .hub-searchbox {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--fg-muted) !important;
+    border-radius: 4px !important;
+    gap: 0 !important;
+  }
+  .hub-searchbox:hover {
+    background: var(--bg-elevated) !important;
+    color: var(--accent) !important;
+  }
+  .hub-searchbox span { display: none !important; }
   .hub-stage { padding: var(--s4) var(--s3); }
   h1 { font-size: 28px; }
   .hub-q-grid { grid-template-columns: 24px minmax(0, 1fr); gap: var(--s3); }
@@ -55,13 +68,19 @@ html, body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--f
   }
   .hub-q-actions { padding-left: calc(24px + var(--s3)); }
 }
+@media (max-width: 768px) {
+  /* belt + braces: still applies if 900px didn't catch */
+  .hub-crumbs { display: none; }
+  .hub-searchbox span { display: none; }
+}
 
 /* ---------- topbar ---------- */
 .hub-topbar {
   position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center; gap: var(--s3);
+  flex-wrap: wrap;
   padding: 0 var(--s5);
-  height: 56px;
+  min-height: 56px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
