@@ -16,6 +16,8 @@ window.HUB = {
         { id: 'sensing',      name: 'Sensing' },
         { id: 'materials',        name: 'Materials' },
         { id: 'waves_quantum',        name: 'Waves and Quantum' },
+        { id: 'forces_motion',        name: 'Forces and Motion' },
+        { id: 'matter_boltzmann',     name: 'Matter and Boltzmann' },
       ],
       quizzes: [
         { id: 'q1', name: 'Quiz one', qCount: 30 },
