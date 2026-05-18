@@ -1,0 +1,320 @@
+// Home, Subject, Topic, Question pages.
+
+function Home({ navigate }) {
+  const subjects = window.HUB.subjects;
+
+  const totalQs = subjects.reduce(
+    (acc, s) => acc + s.topics.reduce(
+      (a, t) => a + (window.HUB.questions[`${s.id}/${t.id}`]?.length || 0), 0), 0
+  );
+
+  return (
+    <div className="hub-content" data-screen-label="Home">
+      <h1>Practice questions for A-Level.</h1>
+      <div className="hub-meta">
+        <span>{totalQs} questions</span>
+        <span className="dot" />
+        <span>{subjects.length} subjects</span>
+        <span className="dot" />
+        <span>Last updated May 14, 2026</span>
+      </div>
+
+      <p className="hub-lede">
+        A small, work-in-progress companion to <a href="https://vksl.uk" target="_blank" rel="noreferrer">VKSL RDB</a>. Pick a subject, pick a topic, then chip away.
+        Every question shows its mark scheme on demand — no logins, no scores, no streaks.
+      </p>
+
+      <h3 className="hub-section-h">Subjects</h3>
+      <div className="hub-subject-grid">
+        {subjects.map(s => {
+          const qs = s.topics.reduce(
+            (a, t) => a + (window.HUB.questions[`${s.id}/${t.id}`]?.length || 0), 0
+          );
+          return (
+            <button
+              key={s.id}
+              className={`hub-subject-card ${s.comingSoon ? 'is-soon' : ''}`}
+              onClick={() => navigate({ page: 'subject', subjectId: s.id })}
+              data-screen-label={`Subject card ${s.name}`}
+            >
+              <div className="head">
+                <span className="icon-wrap"><Icon name={s.icon} size={22} /></span>
+                <div>
+                  <h2>{s.name}</h2>
+                  <div className="board">{s.board}</div>
+                </div>
+              </div>
+              <p className="blurb">{s.blurb}</p>
+              <div className="foot">
+                {s.comingSoon ? (
+                  <span className="stats coming-soon">Coming soon</span>
+                ) : (
+                  <div className="stats">
+                    <span><b>{s.topics.length}</b> topics</span>
+                    <span><b>{qs}</b> questions</span>
+                  </div>
+                )}
+                <span className="arrow"><Icon name="arrow" size={18} /></span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <h3 className="hub-section-h">About</h3>
+      <p style={{ fontSize: 15, color: 'var(--fg-muted)', maxWidth: '60ch', lineHeight: 1.6 }}>
+        Placeholder.
+      </p>
+    </div>
+  );
+}
+
+function SubjectPage({ subjectId, navigate }) {
+  const subject = window.HUB.subjects.find(s => s.id === subjectId);
+  if (!subject) return <NotFound navigate={navigate} />;
+
+  const [quizzesOpen, setQuizzesOpen] = React.useState(true);
+  const [topicsOpen, setTopicsOpen] = React.useState(true);
+
+  if (subject.comingSoon) {
+    return (
+      <div className="hub-content" data-screen-label={`Subject ${subject.name}`}>
+        <h1>{subject.name}</h1>
+        <div className="hub-meta">
+          <span>{subject.board}</span>
+        </div>
+        <p className="hub-lede">Coming soon.</p>
+      </div>
+    );
+  }
+
+  const totalQs = subject.topics.reduce(
+    (a, t) => a + (window.HUB.questions[`${subject.id}/${t.id}`]?.length || 0), 0
+  );
+
+  return (
+    <div className="hub-content" data-screen-label={`Subject ${subject.name}`}>
+      <h1>{subject.name}</h1>
+      <div className="hub-meta">
+        <span>{subject.board}</span>
+        <span className="dot" />
+        <span>{subject.topics.length} topics</span>
+        <span className="dot" />
+        <span>{totalQs} questions</span>
+      </div>
+
+      <p className="hub-lede">{subject.blurb}</p>
+
+      {subject.quizzes && subject.quizzes.length > 0 && (
+        <>
+          <button
+            className={`hub-section-h hub-section-toggle ${quizzesOpen ? 'open' : ''}`}
+            onClick={() => setQuizzesOpen(v => !v)}
+            aria-expanded={quizzesOpen}
+          >
+            Quizzes
+            <span className="chev"><Icon name="chevron" size={12} /></span>
+          </button>
+          {quizzesOpen && (
+            <div className="hub-topic-list">
+              {subject.quizzes.map(q => (
+                <button
+                  key={q.id}
+                  className="hub-topic"
+                  onClick={() => navigate({ page: 'quiz', subjectId: subject.id, quizId: q.id })}
+                  data-screen-label={`Quiz ${q.name}`}
+                >
+                  <span className="name">{q.name}</span>
+                  <span className="qcount">
+                    <b>{q.qCount}</b> question{q.qCount === 1 ? '' : 's'}
+                  </span>
+                  <span className="arrow"><Icon name="arrow" size={18} /></span>
+                </button>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+
+      <button
+        className={`hub-section-h hub-section-toggle ${topicsOpen ? 'open' : ''}`}
+        onClick={() => setTopicsOpen(v => !v)}
+        aria-expanded={topicsOpen}
+      >
+        Topics
+        <span className="chev"><Icon name="chevron" size={12} /></span>
+      </button>
+      {topicsOpen && (
+        <div className="hub-topic-list">
+          {subject.topics.map(t => {
+            const avail = (window.HUB.questions[`${subject.id}/${t.id}`]?.length || 0);
+            return (
+              <button
+                key={t.id}
+                className="hub-topic"
+                onClick={() => navigate({ page: 'topic', subjectId: subject.id, topicId: t.id })}
+                data-screen-label={`Topic ${t.name}`}
+              >
+                <span className="name">{t.name}</span>
+                <span className="qcount">
+                  <b>{avail}</b> question{avail === 1 ? '' : 's'}
+                </span>
+                <span className="arrow"><Icon name="arrow" size={18} /></span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TopicPage({ subjectId, topicId, navigate }) {
+  const subject = window.HUB.subjects.find(s => s.id === subjectId);
+  const topic = subject?.topics.find(t => t.id === topicId);
+  if (!subject || !topic) return <NotFound navigate={navigate} />;
+
+  const qs = window.HUB.questions[`${subject.id}/${topic.id}`] || [];
+  const totalMarks = qs.reduce((a, q) => a + q.marks, 0);
+
+  return (
+    <div className="hub-content" data-screen-label={`Topic ${topic.name}`}>
+      <h1>{topic.name}</h1>
+      <div className="hub-meta">
+        <span>{subject.name}</span>
+        <span className="dot" />
+        <span>{qs.length} question{qs.length === 1 ? '' : 's'}</span>
+        {totalMarks > 0 && <><span className="dot" /><span>{totalMarks} marks total</span></>}
+      </div>
+
+      <p className="hub-lede">
+        Each question's mark scheme is hidden until you ask for it. Work through them in any order.
+      </p>
+
+      {qs.length === 0 ? (
+        <div style={{
+          padding: 'var(--s7) var(--s5)',
+          background: 'var(--bg-elevated)',
+          border: '1px dashed var(--border)',
+          borderRadius: 'var(--r-md)',
+          textAlign: 'center',
+          color: 'var(--fg-muted)',
+        }}>
+          <p style={{ margin: 0, fontSize: 15 }}>
+            No questions written for this topic yet. <a href="#">Suggest one</a>.
+          </p>
+        </div>
+      ) : (
+        <div className="hub-q-stack">
+          {qs.map((q, i) => <QuestionBlock key={q.id} q={q} index={i} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function QuestionBlock({ q, index }) {
+  const [revealed, setRevealed] = React.useState(false);
+
+  // Split body on (a)/(b)/(c) markers into a stem + parts list.
+  const re = /\([a-z]\)/g;
+  const markers = [];
+  let m;
+  while ((m = re.exec(q.body)) !== null) {
+    markers.push({ index: m.index, label: m[0] });
+  }
+
+  let stem = q.body;
+  let parts = null;
+  if (markers.length > 0) {
+    stem = q.body.slice(0, markers[0].index).trim();
+    parts = markers.map((mk, i) => ({
+      label: mk.label,
+      text: q.body.slice(mk.index + mk.label.length, markers[i + 1] ? markers[i + 1].index : q.body.length).trim(),
+      marks: q.partMarks?.[i] ?? null,
+    }));
+  }
+
+  return (
+    <article className="hub-q-block" data-screen-label={`Q${index + 1}`}>
+      <div className="hub-q-grid">
+        <div className="num">{index + 1}</div>
+        <div className="body">
+          <div className="stem-row">
+            <span className="stem-text">{stem}</span>
+            {!parts && <span className="marks">{q.marks} {q.marks === 1 ? 'mark' : 'marks'}</span>}
+          </div>
+          {parts && (
+            <ol className="parts">
+              {parts.map((p, i) => (
+                <li key={i}>
+                  <span className="part-label">{p.label}</span>
+                  <span className="part-text">{p.text}</span>
+                  {p.marks != null && (
+                    <span className="marks">{p.marks} {p.marks === 1 ? 'mark' : 'marks'}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+      </div>
+      <div className="hub-q-actions">
+        <button className="hub-btn" onClick={() => setRevealed(r => !r)}>
+          <Icon name={revealed ? 'eye' : 'flag'} size={14} />
+          {revealed ? 'Hide mark scheme' : 'Reveal mark scheme'}
+        </button>
+      </div>
+      {revealed && (
+        <div className="hub-mark" style={{ marginTop: 'var(--s4)', marginBottom: 0 }}>
+          <div className="hub-mark-title">
+            <Icon name="flag" size={14} /> Mark scheme · {q.marks} mark{q.marks === 1 ? '' : 's'}
+          </div>
+          <div className="hub-mark-list">
+            {q.mark.map((m, i) => (
+              <div className="hub-mark-row" key={i}>
+                <span className="pts">+{m.points}</span>
+                <span>{m.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function NotFound({ navigate }) {
+  return (
+    <div className="hub-content" data-screen-label="Not found">
+      <h1>Not here.</h1>
+      <p className="hub-lede">That route doesn't exist — or the question hasn't been written yet.</p>
+      <button className="hub-btn primary" onClick={() => navigate({ page: 'home' })}>
+        <Icon name="chevron-l" size={15} /> Back to home
+      </button>
+    </div>
+  );
+}
+
+function QuizPage({ subjectId, quizId, navigate }) {
+  const subject = window.HUB.subjects.find(s => s.id === subjectId);
+  const quiz = subject?.quizzes?.find(q => q.id === quizId);
+  if (!subject || !quiz) return <NotFound navigate={navigate} />;
+
+  return (
+    <div className="hub-content" data-screen-label={`Quiz ${quiz.name}`}>
+      <h1>{quiz.name}</h1>
+      <div className="hub-meta">
+        <span>{subject.name}</span>
+        <span className="dot" />
+        <span>{quiz.qCount} multiple-choice questions</span>
+      </div>
+
+      <p className="hub-lede">
+        Placeholder — this quiz isn't built yet.
+      </p>
+    </div>
+  );
+}
+
+Object.assign(window, { Home, SubjectPage, TopicPage, QuestionBlock, QuizPage, NotFound });
