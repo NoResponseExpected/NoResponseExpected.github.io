@@ -1,0 +1,216 @@
+HUB.addQuestions('physics/waves-quantum', [
+  {
+    marks: 3,
+    partMarks: [1, 2],
+    body: 'A standing wave is set up on a string of length 1.20 m fixed at both ends. The string vibrates in its third harmonic. (a) State the number of nodes present (including those at the fixed ends). (b) Calculate the wavelength of the standing wave.',
+    mark: [
+      { points: 1, text: 'Third harmonic: 4 nodes (including both fixed ends).' },
+      { points: 1, text: 'Third harmonic means 3 half-wavelengths fit in the string length: L = 3λ/2, so λ = 2L/3.' },
+      { points: 1, text: 'λ = 2 × 1.20 / 3 = 0.80 m.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'A microwave source of frequency 10.0 GHz is used to produce a standing wave pattern between the source and a metal reflector. (a) Calculate the wavelength of the microwaves. (Speed of light c = 3.00 × 10⁸ m s⁻¹.) (b) Describe how you would detect the standing wave pattern and what measurements you would take to confirm it is a standing wave.',
+    mark: [
+      { points: 1, text: 'v = fλ so λ = v/f = 3.00 × 10⁸ / 10.0 × 10⁹.' },
+      { points: 1, text: 'λ = 0.030 m (3.0 cm).' },
+      { points: 1, text: 'Use a microwave probe/detector moved along the line between source and reflector.' },
+      { points: 1, text: 'Detect regularly spaced positions of zero signal (nodes) and maximum signal (antinodes); distance between adjacent nodes = λ/2 = 1.5 cm confirms standing wave.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'Light of wavelength 590 nm passes through two slits separated by 0.25 mm. A screen is placed 1.8 m from the slits. (a) Calculate the fringe spacing on the screen. (b) Explain what would happen to the fringe pattern if one of the two slits were covered.',
+    mark: [
+      { points: 1, text: 'Using the small angle approximation, fringe spacing w = λD/d.' },
+      { points: 1, text: 'w = (590 × 10⁻⁹ × 1.8) / (0.25 × 10⁻³) = 4.25 × 10⁻³ m ≈ 4.2 mm.' },
+      { points: 1, text: 'The interference (double-slit) pattern disappears.' },
+      { points: 1, text: 'A single-slit diffraction pattern is observed instead: a broad central maximum with dimmer secondary maxima; no equally-spaced fringes.' },
+    ],
+  },
+  {
+    marks: 3,
+    body: 'A ray of light strikes the flat surface of a glass block at an angle of incidence of 40°. The refractive index of the glass is 1.55. Calculate the angle of refraction inside the glass.',
+    mark: [
+      { points: 1, text: 'Snell\'s law: n₁ sin i = n₂ sin r, so sin r = sin 40° / 1.55.' },
+      { points: 1, text: 'sin r = 0.6428 / 1.55 = 0.4147.' },
+      { points: 1, text: 'r = arcsin(0.4147) ≈ 24.5°.' },
+    ],
+  },
+  {
+    marks: 5,
+    partMarks: [2, 3],
+    body: 'A diffraction grating has 600 lines per mm. Light from a sodium lamp produces a spectral line in the second order at an angle of 41.2° from the straight-through direction. (a) Calculate the wavelength of this sodium spectral line. (b) Determine the maximum order of diffraction visible for this wavelength.',
+    mark: [
+      { points: 1, text: 'd = 1/600 mm = 1.667 × 10⁻⁶ m. Using nλ = d sinθ: λ = d sinθ / n.' },
+      { points: 1, text: 'λ = (1.667 × 10⁻⁶ × sin 41.2°) / 2 = (1.667 × 10⁻⁶ × 0.6593) / 2 ≈ 5.49 × 10⁻⁷ m (549 nm).' },
+      { points: 1, text: 'Maximum order when sinθ = 1 (θ = 90°): n_max = d/λ.' },
+      { points: 1, text: 'n_max = 1.667 × 10⁻⁶ / 5.49 × 10⁻⁷ = 3.04.' },
+      { points: 1, text: 'Maximum order = 3 (must be a whole number less than 3.04).' },
+    ],
+  },
+  {
+    marks: 3,
+    body: 'An LED emits light at a peak wavelength of 470 nm. Calculate the energy of one photon emitted by this LED. Give your answer in eV. (h = 6.63 × 10⁻³⁴ J s, c = 3.00 × 10⁸ m s⁻¹, e = 1.60 × 10⁻¹⁹ C)',
+    mark: [
+      { points: 1, text: 'E = hf = hc/λ = (6.63 × 10⁻³⁴ × 3.00 × 10⁸) / (470 × 10⁻⁹).' },
+      { points: 1, text: 'E = 4.23 × 10⁻¹⁹ J.' },
+      { points: 1, text: 'E in eV = 4.23 × 10⁻¹⁹ / 1.60 × 10⁻¹⁹ ≈ 2.64 eV.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'In an experiment to determine the Planck constant using LEDs, a student measures the threshold voltage V at which each LED just begins to emit light. The relationship used is eV = hf. (a) Explain why the threshold voltage is related to the photon energy by eV = hf. (b) The student plots a graph of V against f. State the gradient of this graph and explain how the Planck constant is obtained from it.',
+    mark: [
+      { points: 1, text: 'At threshold, the electrical energy supplied per electron (eV) is just enough to produce one photon.' },
+      { points: 1, text: 'So eV = hf, meaning all the electron\'s energy is transferred to a single photon of frequency f.' },
+      { points: 1, text: 'Gradient of V against f graph = h/e.' },
+      { points: 1, text: 'Multiply gradient by e (charge of electron = 1.60 × 10⁻¹⁹ C) to obtain h.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'An electron is accelerated through a potential difference of 2500 V from rest. (a) Calculate the momentum of the electron after acceleration. (b) Calculate the de Broglie wavelength of this electron. (mₑ = 9.11 × 10⁻³¹ kg, e = 1.60 × 10⁻¹⁹ C, h = 6.63 × 10⁻³⁴ J s)',
+    mark: [
+      { points: 1, text: 'KE = eV = 1.60 × 10⁻¹⁹ × 2500 = 4.00 × 10⁻¹⁶ J. Using KE = p²/2m: p = √(2mₑ × KE).' },
+      { points: 1, text: 'p = √(2 × 9.11 × 10⁻³¹ × 4.00 × 10⁻¹⁶) = √(7.29 × 10⁻⁴⁶) ≈ 2.70 × 10⁻²³ kg m s⁻¹.' },
+      { points: 1, text: 'λ = h/p.' },
+      { points: 1, text: 'λ = 6.63 × 10⁻³⁴ / 2.70 × 10⁻²³ ≈ 2.45 × 10⁻¹¹ m.' },
+    ],
+  },
+  {
+    marks: 3,
+    body: 'Explain how electron diffraction provides evidence that electrons exhibit quantum (wave-like) behaviour. Your answer should refer to what is observed and why this is significant.',
+    mark: [
+      { points: 1, text: 'When electrons are directed at a thin crystal or graphite film, a diffraction pattern (rings) is observed on a detector screen.' },
+      { points: 1, text: 'Diffraction is a wave phenomenon; particles would not produce a diffraction pattern.' },
+      { points: 1, text: 'The pattern is consistent with the electrons having a wavelength given by λ = h/p, confirming wave-particle duality / quantum behaviour.' },
+    ],
+  },
+  {
+    marks: 5,
+    partMarks: [1, 2, 2],
+    body: 'A diffraction grating with 300 lines per mm is illuminated with white light (wavelength range 400 nm to 700 nm). (a) Calculate the grating spacing d. (b) Calculate the angular positions of the first-order diffraction maximum for light of wavelength 400 nm and 700 nm. (c) Hence calculate the angular width of the first-order visible spectrum.',
+    mark: [
+      { points: 1, text: 'd = 1/300 mm = 3.33 × 10⁻⁶ m.' },
+      { points: 1, text: 'For 400 nm: sinθ = nλ/d = 1 × 400 × 10⁻⁹ / 3.33 × 10⁻⁶ = 0.1201; θ = 6.90°.' },
+      { points: 1, text: 'For 700 nm: sinθ = 700 × 10⁻⁹ / 3.33 × 10⁻⁶ = 0.2102; θ = 12.1°.' },
+      { points: 1, text: 'Angular width = 12.1° − 6.90° = 5.2°.' },
+      { points: 1, text: 'Correct method shown with both angles calculated and subtracted.' },
+    ],
+  },
+  {
+    marks: 3,
+    body: 'A glass block has refractive index 1.62. Calculate the critical angle for total internal reflection at the glass-air boundary. Explain what happens to a ray striking this boundary at an angle of incidence greater than the critical angle.',
+    mark: [
+      { points: 1, text: 'At critical angle C: sin C = 1/n = 1/1.62.' },
+      { points: 1, text: 'C = arcsin(0.617) ≈ 38.1°.' },
+      { points: 1, text: 'For angles greater than C, total internal reflection occurs: all light is reflected back into the glass and none is transmitted into the air.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'An oscilloscope trace shows a sinusoidal wave. The time base is set to 5 ms per division and the wave completes exactly 2.5 cycles across the 10-division-wide screen. (a) Determine the frequency of the wave. (b) The y-sensitivity is 2 V per division and the peak-to-peak height of the trace is 6 divisions. Calculate the r.m.s. voltage of the wave.',
+    mark: [
+      { points: 1, text: 'Total time across screen = 10 × 5 ms = 50 ms. Period T = 50 ms / 2.5 = 20 ms = 0.020 s.' },
+      { points: 1, text: 'f = 1/T = 1/0.020 = 50 Hz.' },
+      { points: 1, text: 'Peak-to-peak voltage = 6 × 2 = 12 V, so peak voltage V₀ = 6 V.' },
+      { points: 1, text: 'V_rms = V₀/√2 = 6/√2 ≈ 4.24 V.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'Light of wavelength 633 nm passes through a single narrow slit and then two slits separated by d = 0.40 mm. Interference fringes are observed on a screen 2.0 m away. (a) Calculate the path difference between waves arriving at the third dark fringe from the centre. (b) Calculate the distance of this dark fringe from the central maximum.',
+    mark: [
+      { points: 1, text: 'Dark fringes occur at path difference = (n − ½)λ. Third dark fringe: path difference = 2.5λ.' },
+      { points: 1, text: 'Path difference = 2.5 × 633 × 10⁻⁹ = 1.58 × 10⁻⁶ m.' },
+      { points: 1, text: 'Using path difference = d sinθ ≈ dy/D: y = path difference × D / d.' },
+      { points: 1, text: 'y = 1.58 × 10⁻⁶ × 2.0 / (0.40 × 10⁻³) = 7.9 × 10⁻³ m = 7.9 mm.' },
+    ],
+  },
+  {
+    marks: 3,
+    body: 'The photoelectric effect cannot be explained by the wave model of light. Explain one piece of evidence from the photoelectric effect that the wave model fails to account for, and explain how the photon model resolves this.',
+    mark: [
+      { points: 1, text: 'The wave model predicts that any frequency of light should eventually eject electrons if intensity is high enough, but no electrons are emitted below a threshold frequency regardless of intensity.' },
+      { points: 1, text: 'The photon model states that energy is delivered in discrete quanta (E = hf); a single photon must have enough energy (hf > work function φ) to eject one electron.' },
+      { points: 1, text: 'Below the threshold frequency, no individual photon has sufficient energy, so no electrons can be emitted no matter how many photons arrive.' },
+    ],
+  },
+  {
+    marks: 5,
+    partMarks: [2, 1, 2],
+    body: 'A resonance tube (closed at one end) is used to find the speed of sound in air. The first resonance is heard when the tube length is 18.5 cm, and the second resonance at 55.5 cm. (a) Use these readings to determine the wavelength of the sound. (b) If the signal generator frequency is 450 Hz, calculate the speed of sound. (c) Explain why using two resonances gives a more reliable value of wavelength than using the first resonance alone.',
+    mark: [
+      { points: 1, text: 'In a closed tube, resonances occur at odd quarter-wavelengths: L₁ = λ/4, L₂ = 3λ/4.' },
+      { points: 1, text: 'λ = 2(L₂ − L₁) = 2 × (0.555 − 0.185) = 2 × 0.370 = 0.740 m.' },
+      { points: 1, text: 'v = fλ = 450 × 0.740 = 333 m s⁻¹.' },
+      { points: 1, text: 'Using L₂ − L₁ eliminates the end correction (the antinode is slightly beyond the open end of the tube).' },
+      { points: 1, text: 'The end correction cancels in the subtraction, so the wavelength is determined without this systematic error.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'In a quantum model of light, a phasor is used to represent the contribution of each path to the probability amplitude. (a) Describe what a phasor represents and how phasors from different paths are combined to find the probability of arrival of a photon at a point. (b) Use the phasor model to explain why, in a double-slit experiment, there are positions on the screen where no photons arrive.',
+    mark: [
+      { points: 1, text: 'A phasor is an arrow with a fixed length (amplitude) that rotates at a rate proportional to the frequency of the photon, representing the phase of the quantum amplitude for that path.' },
+      { points: 1, text: 'The resultant phasor is found by adding (tip-to-tail) the phasors for all paths; the probability of arrival is proportional to the square of the resultant phasor length.' },
+      { points: 1, text: 'At certain points, the path difference between the two slits is a half-integer number of wavelengths, meaning the two phasors point in opposite directions.' },
+      { points: 1, text: 'The two phasors cancel (resultant amplitude = 0), so the probability of a photon arriving at that point is zero — a dark fringe is observed.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'Two coherent sources of microwaves (λ = 3.2 cm) are placed 16 cm apart. A detector is moved along a line parallel to the line joining the sources, at a perpendicular distance of 1.5 m. (a) Calculate the separation of adjacent maxima on the detector line. (b) State two conditions that must be satisfied for a stable interference pattern to be produced.',
+    mark: [
+      { points: 1, text: 'Fringe separation w = λD/d.' },
+      { points: 1, text: 'w = (3.2 × 10⁻² × 1.5) / (16 × 10⁻²) = 0.048 / 0.16 = 0.30 m.' },
+      { points: 1, text: 'The sources must be coherent: they must have a constant phase relationship (constant phase difference).' },
+      { points: 1, text: 'The sources must emit waves of the same frequency (and ideally the same amplitude for clearest fringes).' },
+    ],
+  },
+  {
+    marks: 5,
+    partMarks: [1, 2, 2],
+    body: 'An electron microscope accelerates electrons through 50 kV. (a) State one advantage of using electrons rather than visible light for microscopy. (b) Calculate the de Broglie wavelength of these electrons. (c) Calculate the ratio of this wavelength to the wavelength of green light (500 nm) and comment on the implication for resolution. (mₑ = 9.11 × 10⁻³¹ kg, e = 1.60 × 10⁻¹⁹ C, h = 6.63 × 10⁻³⁴ J s)',
+    mark: [
+      { points: 1, text: 'Electrons can have a much smaller wavelength than visible light, so can resolve much finer detail (smaller features).' },
+      { points: 1, text: 'KE = eV = 1.60 × 10⁻¹⁹ × 50 × 10³ = 8.00 × 10⁻¹⁵ J. p = √(2mₑ KE) = √(2 × 9.11 × 10⁻³¹ × 8.00 × 10⁻¹⁵).' },
+      { points: 1, text: 'p = √(1.458 × 10⁻⁴⁴) = 1.208 × 10⁻²² kg m s⁻¹. λ = h/p = 6.63 × 10⁻³⁴ / 1.208 × 10⁻²² ≈ 5.5 × 10⁻¹² m.' },
+      { points: 1, text: 'Ratio = 500 × 10⁻⁹ / 5.5 × 10⁻¹² ≈ 91 000 (approximately 10⁵).' },
+      { points: 1, text: 'The electron wavelength is ~10⁵ times smaller than green light, allowing resolution of features roughly 10⁵ times smaller — down to the scale of atoms.' },
+    ],
+  },
+  {
+    marks: 4,
+    partMarks: [2, 2],
+    body: 'A student is determining the refractive index of a rectangular glass block by tracing rays. (a) Describe the procedure the student should follow to obtain a reliable value of refractive index, including what measurements to take. (b) The student finds that n = 1.48. A ray strikes the glass-air boundary inside the block at an angle of incidence of 45°. Determine whether total internal reflection occurs. Show your working clearly.',
+    mark: [
+      { points: 1, text: 'Draw outline of block. Direct a ray at the block face, mark entry and exit points, and mark direction of incident ray. Draw normal at entry point, measure angles of incidence i and refraction r with a protractor.' },
+      { points: 1, text: 'Repeat for several angles of incidence; plot sin i against sin r; gradient = n. (Or use n = sin i / sin r for each reading and average.)' },
+      { points: 1, text: 'Critical angle C: sin C = 1/n = 1/1.48, so C = arcsin(0.676) ≈ 42.5°.' },
+      { points: 1, text: '45° > 42.5° = critical angle, so total internal reflection does occur.' },
+    ],
+  },
+  {
+    marks: 5,
+    partMarks: [2, 3],
+    body: 'A line in the emission spectrum of hydrogen has a wavelength of 486 nm. (a) Calculate the energy of one photon corresponding to this spectral line, in joules and in eV. (b) This photon is produced when an electron transitions between two energy levels in a hydrogen atom. The higher energy level is at −0.85 eV. Calculate the energy of the lower level and explain what determines which frequencies appear in a line spectrum.',
+    mark: [
+      { points: 1, text: 'E = hf = hc/λ = (6.63 × 10⁻³⁴ × 3.00 × 10⁸) / (486 × 10⁻⁹) = 4.09 × 10⁻¹⁹ J.' },
+      { points: 1, text: 'E in eV = 4.09 × 10⁻¹⁹ / 1.60 × 10⁻¹⁹ ≈ 2.56 eV.' },
+      { points: 1, text: 'Lower energy level = −0.85 − 2.56 = −3.41 eV.' },
+      { points: 1, text: 'Atoms have discrete (quantised) energy levels; a photon is emitted only when an electron drops from a higher to a lower level.' },
+      { points: 1, text: 'The photon frequency is determined by the energy difference: E = hf, so only specific frequencies corresponding to allowed transitions appear — giving a line spectrum rather than a continuous one.' },
+    ],
+  },
+]);
