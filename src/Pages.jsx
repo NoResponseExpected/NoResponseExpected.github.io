@@ -61,7 +61,14 @@ function Home({ navigate }) {
         })}
       </div>
 
-      
+      <h3 className="hub-section-h">Games</h3>
+      <div className="hub-topic-list">
+        <a href="basketball.html" className="hub-topic" data-screen-label="Basketball game">
+          <span className="name">Basketball</span>
+          <span className="qcount">Mini game</span>
+          <span className="arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
     </div>
   );
 }
